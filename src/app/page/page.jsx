@@ -1,4 +1,4 @@
-import style from './page.modele.css'
+import style from './page.module.css'
 export const Page = () => {
   return (
     <>
