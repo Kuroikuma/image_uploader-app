@@ -1,0 +1,36 @@
+.container {
+  width: 80%;
+  height: 35vh;
+  background: #f6f8fb;
+  border: 2px dashed #97bef4;
+  box-sizing: border-box;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.Uploaded {
+  border: none;
+  border-radius: 12px;
+  background-color: transparent;
+}
+.container img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.container p {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+#back_img {
+  width: 40%;
+  height: auto;
+}

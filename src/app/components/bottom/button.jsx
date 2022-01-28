@@ -6,8 +6,13 @@ export const Button = () => {
   const [copySuccess, setCopySuccess] = useState('')
   const { isUploaded, file } = useContext(Context)
   const textRef = useRef(null)
+  const hiddenFileInput = useRef(null)
 
-  function copyToClipboard(e) {
+  function handleClick() {
+    hiddenFileInput.current.click()
+  }
+
+  const copyToClipboard = (e) => {
     console.log(textRef)
     textRef.current.select()
     document.execCommand('copy')
@@ -17,16 +22,21 @@ export const Button = () => {
   return (
     <>
       {isUploaded ? (
-        <div className={style.container}>
-          <input
-            readOnly={false}
-            ref={textRef}
-            value=" https://firebasestorage.googleapis.com/v0/b/medicall-3dced.appspot.com/o/25May2021124156Portada%20VACIA%20copia.jpg?alt=media&token=f96967fd-4ec7-4f47-b3dc-28ad102dacc2"
-          />
-          <button onClick={copyToClipboard}>Copy Link</button>
-        </div>
+        <>
+          <div className={style.container}>
+            <input readOnly ref={textRef} value={file} />
+            <button onClick={copyToClipboard}>Copy Link</button>
+          </div>
+          <p className={style.p}>{copySuccess}</p>
+        </>
       ) : (
-        <button className={style.button}>Choose file</button>
+        <div className={style.container2}>
+          <p>Or</p>
+          <button onClick={handleClick} type="button" className={style.button}>
+            Choose file
+          </button>
+          <input ref={hiddenFileInput} type="file" className={style.none} />
+        </div>
       )}
     </>
   )
