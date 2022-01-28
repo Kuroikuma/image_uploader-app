@@ -27,8 +27,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "./node_modules/standard/eslintrc.json"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -44,7 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@s-ui/mono": "2.18.0",
-    "standard": "16.0.4"
+    "@s-ui/mono": "2.18.0"
   }
 }
