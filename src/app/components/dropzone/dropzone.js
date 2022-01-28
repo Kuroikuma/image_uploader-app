@@ -1,14 +1,17 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
+import Context from './../../context/app.context'
 import { useDropzone } from 'react-dropzone'
 import { useFileStorage } from './useFileStorage'
 
 export function DropzoneFile () {
-  const [fileUrl, fileHandler] = useFileStorage()
+  const [fileHandler] = useFileStorage()
+  const { file, setIsLoading } = useContext(Context)
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles && acceptedFiles.map((file) => {
+      setIsLoading(true)
       return fileHandler(file)
     })
-  }, [fileHandler])
+  }, [fileHandler, setIsLoading])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
@@ -21,7 +24,7 @@ export function DropzoneFile () {
         : (
           <p>Drag 'n' drop some files here, or click to select files</p>
           )}
-      {fileUrl ? <img src={fileUrl} alt='FileStorage' /> : null}
+      {file ? <img src={file} alt='FileStorage' /> : null}
     </div>
   )
 }

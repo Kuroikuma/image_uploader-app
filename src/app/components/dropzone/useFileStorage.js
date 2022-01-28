@@ -1,15 +1,17 @@
 import { app } from '../../../fb'
-import { useState } from 'react'
+import { useContext } from 'react'
+import Context from '../../context/app.context'
 
 export const useFileStorage = () => {
-  const [fileUrl, setFileUrl] = useState('')
+  const { setFile, setIsLoading } = useContext(Context)
   const fileHandler = async (fileProps) => {
     const file = fileProps
     const storegeRef = app.storage().ref()
     const filePath = storegeRef.child(file.name)
     await filePath.put(file)
     const linkUrl = await filePath.getDownloadURL()
-    setFileUrl(linkUrl)
+    setFile(linkUrl)
+    setIsLoading(false)
   }
-  return [fileUrl, fileHandler]
+  return [fileHandler]
 }
